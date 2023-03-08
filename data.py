@@ -1,28 +1,33 @@
 import requests
+import json
 from decouple import config
 
 def getData(token, startDate, endDate, id):
     """
-    recives an authetication token, as well as start and end dates, and the data id
-    returns a json with the data 
+    recives an authetication token, as well as start and end dates
     """ 
 
     home = "https://api.esios.ree.es/"
-    ##not sure about the id
-    route = f" /indicators?start_date={startDate}&end_date={endDate}&taxonomy_ids[]={id}"
+    route = f"/indicators/{id}?start_date={startDate}&end_date={endDate}&date_type=datos&time_trunc=hour&geo_agg=sum"
     url = home + route
     header = {"Accept": "application/json; application/vnd.esios-api-v1+json",
           "Content-Type": "application/json",
           "x-api-key": f"{token}"}
-    response = requests.get(url, headers=header)
-    json = response.json()
-    return json
+    responseAPI = requests.get(url, headers=header)
+    response = responseAPI.text
+    parseJson = json.loads(response)
+    return parseJson
+
 
 startDate = "2018-09-02T00:00:00+00:00"
 endDate = "2018-10-06T23:59:59+00:00"
 myToken = config("my_token")
-variable = "Demanda Real"
 id = 1293
 
 data = getData(myToken, startDate, endDate, id)
-print(data)
+for d in data:
+    print(d["value"])
+    print(d["datetime"])
+
+
+
