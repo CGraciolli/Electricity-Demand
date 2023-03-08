@@ -8,7 +8,7 @@ def getData(token, startDate, endDate, id):
     """ 
 
     home = "https://api.esios.ree.es/"
-    route = f"/indicators/{id}?start_date={startDate}&end_date={endDate}&date_type=datos&time_trunc=hour&geo_agg=sum"
+    route = f"/indicators/{id}?start_date={startDate}&end_date={endDate}&time_trunc=hour&geo_agg=sum"
     url = home + route
     header = {"Accept": "application/json; application/vnd.esios-api-v1+json",
           "Content-Type": "application/json",
@@ -16,8 +16,21 @@ def getData(token, startDate, endDate, id):
     responseAPI = requests.get(url, headers=header)
     response = responseAPI.text
     parseJson = json.loads(response)
-    return parseJson
+    indicator = parseJson["indicator"]["values"]
+    return indicator
 
+##make it one function
+def getList(data):
+    values = []
+    for datum in data:
+        values.append(datum["value"])
+    return values
+
+def getListHours(data):
+    hours = []
+    for datum in data:
+        hours.append(datum["datetime"])
+    return hours
 
 startDate = "2018-09-02T00:00:00+00:00"
 endDate = "2018-10-06T23:59:59+00:00"
@@ -25,9 +38,9 @@ myToken = config("my_token")
 id = 1293
 
 data = getData(myToken, startDate, endDate, id)
-for d in data:
-    print(d["value"])
-    print(d["datetime"])
+listValues = getList(data)
+listHours = getListHours(data)
+
 
 
 
