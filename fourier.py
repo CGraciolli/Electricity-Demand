@@ -1,5 +1,5 @@
 from scipy.fft import fft
-from scipy.signal import periodogram
+from scipy.signal import periodogram, welch
 import numpy as np
 import matplotlib.pyplot as plt
 from decouple import config
@@ -12,11 +12,11 @@ endDate = "2018-10-06T23:59:59+00:00"
 myToken = config("my_token")
 
 data = getData(myToken, startDate, endDate)
-listValues = getList(data, "values")
+listValues = getList(data, "value")
 
 x = np.array(listValues)
 fast_fourier = fft(x)
 
-f, pxx = periodogram(x)
+f, pxx = welch(x)
 plt.semilogy(f, pxx)
 plt.show()
