@@ -1,7 +1,7 @@
 import requests
 import json
 import numpy as np
-from scipy.fft import fft
+from scipy.fft import rfft
 from decouple import config
 
 def getData(token, startDate, endDate, id=1293):
@@ -32,6 +32,7 @@ def getList(data, key):
     values = list(map(lambda x: x[key], data))
     return values
 
+##changed to rfft, description needs to be changed 
 def getFFT(myToken, startDate, endDate):
     """
     recives an start date and a end date,
@@ -40,7 +41,7 @@ def getFFT(myToken, startDate, endDate):
     data = getData(myToken, startDate, endDate)
     listValues = getList(data, "value")
     x = np.array(listValues)
-    fast_fourier = fft(x)
+    fast_fourier = rfft(x)
     return fast_fourier
 
 
