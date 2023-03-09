@@ -24,8 +24,12 @@ def getData(token, startDate, endDate, id=1293):
     indicator = parseJson["indicator"]["values"]
     return indicator
 
-def getList(data, column):
-    values = list(map(lambda x: x[column], data))
+def getList(data, key):
+    """
+    recives a list of dictionaries and a key,
+    returns a list of the values associated with the key
+    """
+    values = list(map(lambda x: x[key], data))
     return values
 
 def getFFT(myToken, startDate, endDate):
