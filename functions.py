@@ -38,7 +38,7 @@ def getFFT(myToken, startDate, endDate):
     returns the fast fourier transform associated with the real electricity demand for this interval
     """
     data = getData(myToken, startDate, endDate)
-    listValues = getList(data)
+    listValues = getList(data, "value")
     x = np.array(listValues)
     fast_fourier = fft(x)
     return fast_fourier
