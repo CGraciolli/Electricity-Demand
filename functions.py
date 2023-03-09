@@ -2,7 +2,7 @@ import requests
 import json
 from decouple import config
 
-def getData(token, startDate, endDate, id):
+def getData(token, startDate, endDate, id=1293):
     """
     recives an authetication token, as well as start and end dates
     """ 
@@ -32,14 +32,6 @@ def getListHours(data):
         hours.append(datum["datetime"])
     return hours
 
-startDate = "2018-09-02T00:00:00+00:00"
-endDate = "2018-10-06T23:59:59+00:00"
-myToken = config("my_token")
-id = 1293
-
-data = getData(myToken, startDate, endDate, id)
-listValues = getList(data)
-listHours = getListHours(data)
 
 
 
