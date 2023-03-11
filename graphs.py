@@ -1,9 +1,10 @@
-
 from seaborn import pointplot
 import matplotlib.pyplot as plt
 from functions import getList, getData
 from decouple import config
 from scipy.signal import welch
+
+##missing titles for the graphs
 
 startDate = "2018-09-02T00:00:00+00:00"
 endDate = "2018-10-06T23:59:59+00:00"

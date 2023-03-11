@@ -7,7 +7,6 @@ myToken = config("my_token")
 app = FastAPI()
 
 @app.get("/")
-##not sure about the async
 async def fourier():
     """
     retrieves  data for the real electricity demand from September 2nd to October 10th of 2018 from an API
