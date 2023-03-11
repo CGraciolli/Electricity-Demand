@@ -4,10 +4,8 @@ from scipy.signal import welch
 from functions import getData, getList, jsonWelch
 
 myToken = config("my_token")
-
 app = FastAPI()
 
-## the apis should return json format
 @app.get("/")
 async def getwelch():
     """

@@ -2,6 +2,7 @@ import requests
 import json
 from scipy.fft import fft
 from scipy.signal import welch
+import numpy as np
 
 def getData(token, startDate, endDate, id=1293):
     """
@@ -42,7 +43,11 @@ def getFFT(myToken, startDate, endDate):
     return fast_fourier
 
 def jsonFFT(myToken, startDate, endDate):
-    fast_fourier = getFFT(myToken, startDate, endDate)
+    fast_fourier = getFFT(myToken, startDate, endDate)    
+    fourier_real = list(map(lambda x : np.real(x), fast_fourier))
+    fourier_imag = list(map(lambda x : np.imag(x), fast_fourier))
+    jsonFourier = json.dumps({"real": fourier_real, "imaginary": fourier_imag})
+    return jsonFourier
 
 def jsonWelch(myToken, startDate, endDate):
     data = getData(myToken, startDate, endDate)
@@ -50,3 +55,14 @@ def jsonWelch(myToken, startDate, endDate):
     f, pxx = welch(listValues)
     jsonWelch = json.dumps({"f": list(f), "pxx": list(pxx)})
     return jsonWelch
+
+
+from decouple import config
+myToken = config("my_token")
+startDate = "2018-09-02T00:00:00+00:00"
+endDate = "2018-10-06T23:59:59+00:00"
+fast_fourier = list(getFFT(myToken, startDate, endDate))
+fourier_real = list(map(lambda x : np.real(x), fast_fourier))
+fourier_imag = list(map(lambda x : np.imag(x), fast_fourier))
+print(type(fourier_real[0]))
+print(type(fourier_imag[0]))
