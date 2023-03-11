@@ -19,6 +19,10 @@ async def fourier():
 
 @app.get("/start_data={startDate}&end_date={endDate}")
 async def fourierDates(startDate, endDate):
+    """
+    retrieves  data for the real electricity demand from the start date to the end date from an API
+    returns the Fast Fourier Transform
+    """
     fast_fourier = getFFT(myToken, startDate, endDate)
     return {"fourier" : fast_fourier}
 

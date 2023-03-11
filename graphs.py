@@ -28,10 +28,10 @@ plt.ylabel("Real Demand in MW")
 plt.xticks(rotation = 90)
 plt.show()
 
-##periodogram
+##power spectral density
 f, pxx = welch(listValues)
 plt.ylabel("Real Demand")
 plt.xlabel("Frequency")
 plt.plot(f, pxx)
-plt.title("Periodogram for the Real Demand Electricity in Spain", fontsize=20)
+plt.title("Power Spectral Density of the Real Demand Electricity in Spain", fontsize=20)
 plt.show()
