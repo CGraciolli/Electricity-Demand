@@ -11,7 +11,7 @@ app = FastAPI()
 @app.get("/")
 async def fourier():
     """
-    retrieves  data for the real electricity demand from September 2nd to October 10th of 2018 from an API
+    retrieves data for the real electricity demand from September 2nd to October 10th of 2018 from an API
     returns the Fast Fourier Transform
     """
     startDate = "2018-09-02T00:00:00+00:00"

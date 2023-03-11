@@ -1,11 +1,11 @@
 import requests
 import json
-import numpy as np
 from scipy.fft import fft
+from scipy.signal import welch
 
 def getData(token, startDate, endDate, id=1293):
     """
-    recives an authetication token, as well as start and end dates,
+    receives an authetication token, as well as start and end dates,
     it can also recive the id of the variable we want to retrieve, if none is given it will use 1293,
     the id for the real electricity demand.
     returns the values from the start date to the end date, every hour.
@@ -25,7 +25,7 @@ def getData(token, startDate, endDate, id=1293):
 
 def getList(data, key):
     """
-    recives a list of dictionaries and a key,
+    receives a list of dictionaries and a key,
     returns a list of the values associated with the key
     """
     values = list(map(lambda x: x[key], data))
@@ -33,10 +33,20 @@ def getList(data, key):
 
 def getFFT(myToken, startDate, endDate):
     """
-    recives an start date and a end date,
+    receives an start date and a end date,
     returns the fast fourier transform associated with the real electricity demand for this interval
     """
     data = getData(myToken, startDate, endDate)
     listValues = getList(data, "value")
     fast_fourier = fft(listValues)
     return fast_fourier
+
+def jsonFFT(myToken, startDate, endDate):
+    fast_fourier = getFFT(myToken, startDate, endDate)
+
+def jsonWelch(myToken, startDate, endDate):
+    data = getData(myToken, startDate, endDate)
+    listValues = getList(data, "value")
+    f, pxx = welch(listValues)
+    jsonWelch = json.dumps({"f": list(f), "pxx": list(pxx)})
+    return jsonWelch
