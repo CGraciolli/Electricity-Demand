@@ -10,7 +10,8 @@
 			"name": "New Request",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"description": "StartFragment\n\nThis API returns the estimated power spectral density (using Welch's method) for the real electricity demand for Spain between two dates. It returns an array of sample frequencies as f and the power spectral density as pxx.\n\nThe route GET / returns the estimated power spectral density for between September 2nd of 2018 and the end date October 6th of the same year.\n\nThe route GET /start_date={startDate}&end_date={endDate} allows the user to choose the start and end dates.\n\nEndFragment"
 			},
 			"response": [
 				{

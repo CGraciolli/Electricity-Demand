@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "5d78d2f6-5a9d-4a98-b282-f684db461a9c",
 		"name": "Fast Fourier Transform",
+		"description": "This API returns the Fast Fourier Transform for the real electricity demand for Spain between two dates. Since the FFT is a list of complex numbers, it returns two lists, one with the real parts of the numbers, the other with the imaginary part.\n\nThe route GET / returns the FFT for between September 2nd of 2018 and the end date October 6th of the same year.\n\nThe route GET /start_date={startDate}&end_date={endDate} allows the user to choose the start and end dates.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "26242099"
 	},
