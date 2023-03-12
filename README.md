@@ -14,7 +14,7 @@ As we can see in the graph above, the function is approximately periodical. This
 As expected, the spectral density estimated has peaks near the frequencies that represent one week (1/(24*7) ≈ 0.006), one day (1/24 ≈ 0.04), and twelve hours (0.08). 
 <br>
 <h4>The APIs:</h4>
-I decided to make two APIs, one returning the fast fourier transform, the other the Welch estimated power spectral density. Both return the values from 02/09/2018 to 06/10/2018 in their home page, but also have option of changing dates.
-The reason for including the second API is that, if the objective of computing the FFT for the signal is to detect seasonal patterns, they can be found by looking at the spectral density for peaks. The Welch estimated is just a smoothed periodogram, making it easier to detect patterns.
+<p>I decided to make two APIs, one returning the fast fourier transform, the other the Welch estimated power spectral density. Both return the values from 02/09/2018 to 06/10/2018 in their home page, but also have option of changing dates.</p>
+<p>The reason for including the second API is that, if the objective of computing the FFT for the signal is to detect seasonal patterns, they can be found by looking at the spectral density for peaks. The Welch estimated is just a smoothed periodogram, making it easier to detect patterns.</p>
 
 
