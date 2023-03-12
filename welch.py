@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from decouple import config
-from scipy.signal import welch
-from functions import getData, getList, jsonWelch
+from functions import jsonWelch
 
 myToken = config("my_token")
 app = FastAPI()
